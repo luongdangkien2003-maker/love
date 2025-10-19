@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi bạn yêu giấu</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #f8e1e9, #ffccd5);
+            font-family: 'Dancing Script', cursive;
+            overflow: hidden;
+            position: relative;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+        .envelope {
+            text-align: center;
+            cursor: pointer;
+            border: 5px solid #ff69b4;
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .envelope img {
+            width: 300px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .envelope img:hover {
+            transform: scale(1.1);
+        }
+        .envelope p {
+            font-size: 28px;
+            color: #ff69b4;
+            margin-top: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.5);
+        }
+        .letter {
+            display: none;
+            position: relative;
+            background: linear-gradient(135deg, #ffe4e1, #ffccd5);
+            width: 80%;
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 3px solid #ff69b4;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .letter img.flower {
+            position: absolute;
+            width: 120px;
+            top: 10px;
+            left: 10px;
+            opacity: 0.6;
+            transform: rotate(-10deg);
+        }
+        .letter img.couple {
+            width: 100%;
+            max-width: 350px;
+            margin-top: 20px;
+            border-radius: 15px;
+            border: 2px solid #ff69b4;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+        .letter p {
+            font-size: 20px;
+            color: #333;
+            line-height: 1.8;
+            font-weight: 400;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .petal {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: url('https://via.placeholder.com/25x25/ffb6c1/ffffff?text=Petal') no-repeat;
+            background-size: cover;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" id="envelope">
+        <img src="https://img.pikbest.com/png-images/20250821/pink-envelope-with-heart-seal-for-romantic-love-letter_11847102.jpg!sw800" alt="Phong bì">
+        <p>Mở Thư</p>
+    </div>
+    <div class="letter" id="letter">
+        <p>❤️20/10 chúc đằng ấy thật nhiều niềm vui, luôn gặp điều may mắn và tốt đẹp nhất. Bạn xứng đáng được hạnh phúc — và nếu được, bên này cũng muốn góp chút phần nhỏ trong đó. Thôi thì chúc bạn một ngày thật chill, không deadline, không áp lực, chỉ toàn niềm vui😌</p>
+        <img class="couple" src="https://scontent.fbkk29-1.fna.fbcdn.net/v/t39.30808-6/568528881_1562617584907295_3973082130760901765_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Gt2FtC0wts0Q7kNvwGFEjhZ&_nc_oc=Adm-rwoQSyGDkDFhNBbz3lJNrF_omnwGWZqL9oiYTnDZPmlacPV-sPcUpAnT_mOI1MskEecazUvjaIRxEbGE4vZA&_nc_zt=23&_nc_ht=scontent.fbkk29-1.fna&_nc_gid=Z22pDDW5DF6oRpfNJmhr5g&oh=00_Affnme-Mqg19WhoRZlQgGh0mxfXIQ3Xk_s-nRRcOtt82BA&oe=68FACD60" alt="Ảnh cặp đôi">
+    </div>
+
+    <script>
+        document.getElementById('envelope').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+            createPetals();
+        });
+
+        function createPetals() {
+            const petalCount = 30;
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 7 + 7 + 's';
+                petal.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(petal);
+
+                petal.addEventListener('animationend', () => {
+                    petal.remove();
+                });
+            }
+            setInterval(createPetals, 6000);
+        }
+    </script>
+</body>
+</html>
